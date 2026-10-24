@@ -55,7 +55,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | D4 | One external API | ☑ Divvy GBFS |
 | D5 | Code in your own GitHub repo | ☑ github.com/nocturnalvigilante/design_ship_build_homework_4 |
 | D6 | Deployed on Vercel's free Hobby plan | ☑ https://dockcheck-phi.vercel.app (2026-10-24); signed-out `/`, `/api/stations`, `/api/status` all redirect with no data |
-| D7 | `AGENTS.md` is the context file; any `CLAUDE.md` merged into it and deleted; `/context` shows `AGENTS.md` loaded | ☐ no CLAUDE.md exists; **run `/context` and check AGENTS.md is listed** |
+| D7 | `AGENTS.md` is the context file; any `CLAUDE.md` merged into it and deleted; `/context` shows `AGENTS.md` loaded | ☑ no CLAUDE.md exists; `/context` lists `~/projects/dbs-a4/AGENTS.md` under memory files (`docs/evidence/context-agents-md.png`) |
 
 ## E. Free tiers and usage limits
 
