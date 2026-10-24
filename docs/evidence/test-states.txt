@@ -1,0 +1,10 @@
+# Playwright check of the designed states: nothing found (search "zzz") and API down (/?demo=api-down)
+# 2026-10-24 17:07 CDT, against the dev server
+
+[dotenv@17.2.2] injecting env (0) from .env.local,.env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › e2e/states.spec.ts:6:5 › search with no match and Divvy being down both have a designed state (1.6m)
+
+  1 passed (1.7m)
