@@ -54,7 +54,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | D3 | Supabase for the database | ☐ |
 | D4 | One external API | ☐ |
 | D5 | Code in your own GitHub repo | ☐ |
-| D6 | Deployed on Vercel's free Hobby plan | ☐ |
+| D6 | Deployed on Vercel's free Hobby plan | ☑ https://dockcheck-phi.vercel.app (2026-10-24); signed-out `/`, `/api/stations`, `/api/status` all redirect with no data |
 | D7 | `AGENTS.md` is the context file; any `CLAUDE.md` merged into it and deleted; `/context` shows `AGENTS.md` loaded | ☐ |
 
 ## E. Free tiers and usage limits
@@ -81,7 +81,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 
 | # | Item | Status |
 |---|---|---|
-| G1 | Vercel URL | ☐ |
+| G1 | Vercel URL: https://dockcheck-phi.vercel.app | ☐ |
 | G2 | GitHub URL (README + commit history) | ☐ |
 
 ## Easy-to-miss items (each one costs marks if skipped)
