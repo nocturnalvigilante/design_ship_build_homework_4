@@ -10,7 +10,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | A2 | Sign-in with Clerk, and nothing visible when signed out | | ☐ |
 | A3 | Data in Supabase, with row-level security on every table | | ☐ |
 | A4 | Data from an external API, with loading, empty and unavailable states | | ☐ |
-| A5 | What you save is still there after signing out and back in | | ☐ |
+| A5 | What you save is still there after signing out and back in | "lab" saved on laptop, seen on phone at dockcheck-phi.vercel.app (`docs/evidence/phone-persistence.jpg`) | ☑ |
 | A6 | Keys kept out of the code and the repo, with a deny rule for `.env` files | | ☐ |
 | A7 | One Playwright test, watched failing before it passed | | ☐ |
 | A8 | `/security-review` run on a branch | 2026-10-24 on `feat/clerk` before merging: 0 findings, report in `docs/security-review.md` | ☑ |
@@ -38,7 +38,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | C1 | **Accounts:** sign up, sign in and sign out with Clerk; a signed-out visitor sees no one's data | ☐ |
 | C2 | **Data:** in Supabase, RLS on every table, each person sees only their own rows | ☐ |
 | C3 | **API:** data from one external API, with designed loading, nothing-found and API-down states | ☐ |
-| C4 | **Persistence:** saved data is still there after signing out and back in, **on another device** | ☐ |
+| C4 | **Persistence:** saved data is still there after signing out and back in, **on another device** | ☑ 2026-10-24 laptop → phone, `docs/evidence/phone-persistence.jpg` |
 | C5 | **Keys:** in environment variables, never in the code or repo, with a deny rule for `.env` files | ☐ |
 | C6 | **Test:** one Playwright test that two users can't see each other's data, watched failing first | ☐ |
 | C7 | **Review:** `/security-review` on a branch, **and its findings handled** | ☐ |
