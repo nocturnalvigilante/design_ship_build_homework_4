@@ -22,6 +22,11 @@ Main task, as one sentence:
 - **The user creates and edits `.env.local`. The agent never does.**
 - Publishable keys (`NEXT_PUBLIC_…`) may reach the browser. Secret keys (Clerk secret, any Supabase service key) stay on the server only.
 
+## Sign-in (Clerk)
+
+- `src/middleware.ts` is plain `clerkMiddleware()`: it identifies the user but protects nothing. Clerk has deprecated `createRouteMatcher`, so there is no route list.
+- **Every page, Route Handler and Server Action that shows or changes someone's data starts with `await auth.protect()`** (from `@clerk/nextjs/server`). Only `/sign-in` and `/sign-up` are public.
+
 ## External API: Divvy GBFS (no key)
 
 - Stations: `https://gbfs.lyft.com/gbfs/1.1/chi/en/station_information.json`. About 2,074 stations: `station_id`, `name`, `lat`, `lon`, `capacity`.
