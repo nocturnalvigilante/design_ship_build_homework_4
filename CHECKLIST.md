@@ -7,7 +7,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | # | Requirement | Evidence | Status |
 |---|---|---|---|
 | A1 | A live Vercel URL where a classmate can make an account and use the tool | | ☐ |
-| A2 | Sign-in with Clerk, and nothing visible when signed out | | ☐ |
+| A2 | Sign-in with Clerk, and nothing visible when signed out | signed-out visit redirects to /sign-in (local + live); sign-out on phone lands on sign-in with no data (`docs/evidence/phone-signed-out.jpg`) | ☑ |
 | A3 | Data in Supabase, with row-level security on every table | | ☐ |
 | A4 | Data from an external API, with loading, empty and unavailable states | | ☐ |
 | A5 | What you save is still there after signing out and back in | "lab" saved on laptop, seen on phone at dockcheck-phi.vercel.app (`docs/evidence/phone-persistence.jpg`) | ☑ |
@@ -35,7 +35,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 
 | # | Requirement | Status |
 |---|---|---|
-| C1 | **Accounts:** sign up, sign in and sign out with Clerk; a signed-out visitor sees no one's data | ☐ |
+| C1 | **Accounts:** sign up, sign in and sign out with Clerk; a signed-out visitor sees no one's data | ☑ 2026-10-24 sign-up (Google), sign-in on laptop and phone, sign-out on phone |
 | C2 | **Data:** in Supabase, RLS on every table, each person sees only their own rows | ☐ |
 | C3 | **API:** data from one external API, with designed loading, nothing-found and API-down states | ☐ |
 | C4 | **Persistence:** saved data is still there after signing out and back in, **on another device** | ☑ 2026-10-24 laptop → phone, `docs/evidence/phone-persistence.jpg` |
