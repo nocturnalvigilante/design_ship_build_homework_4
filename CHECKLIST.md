@@ -12,7 +12,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | A4 | Data from an external API, with loading, empty and unavailable states | | ☐ |
 | A5 | What you save is still there after signing out and back in | "lab" saved on laptop, seen on phone at dockcheck-phi.vercel.app (`docs/evidence/phone-persistence.jpg`) | ☑ |
 | A6 | Keys kept out of the code and the repo, with a deny rule for `.env` files | | ☐ |
-| A7 | One Playwright test, watched failing before it passed | | ☐ |
+| A7 | One Playwright test, watched failing before it passed | `e2e/isolation.spec.ts`; failed with RLS broken (`docs/evidence/test-failing-rls-broken.txt`: "user B can see user A's station"), passed after the fix (`docs/evidence/test-passing-rls-fixed.txt`) | ☑ |
 | A8 | `/security-review` run on a branch | 2026-10-24 on `feat/clerk` before merging: 0 findings, report in `docs/security-review.md` | ☑ |
 | A9 | A GitHub repo with commits that show progress (not one-shot) | | ☐ |
 | A10 | Ready to explain the work in class (section F) | | ☐ |
@@ -28,7 +28,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | B4 | **Clerk:** run `npx -y clerk@latest init`; a signed-out visitor can't reach anyone's data, **checked by trying it signed out** | ☑ "Show me how the Clerk CLI works: what clerk init added, file by file." (middleware, ClerkProvider in layout, /sign-in, /sign-up) | ☑ 2026-10-24: signed-out browser got `GET / 307` → `/sign-in`; after signing in, `GET / 200` (dev server log) |
 | B5 | **Supabase:** create the project; connect its **MCP server scoped to that one project** (write access recommended); Clerk connected via Supabase third-party auth (Authentication → Sign In / Providers → Clerk); tables created **as migrations**, with **RLS on every table** | ☐ "Explain each RLS policy in plain words, then show me a query one would block." | ☑ 2026-10-24: project `dockcheck` (us-east-1); MCP pinned by `project_ref` in `.mcp.json`; Clerk third-party auth enabled; 2 migrations in `supabase/migrations/`; all 3 tables RLS on with 4 policies each, `anon` has no access; security advisor 0 issues |
 | B6 | **Where the API is called:** browser or server, with the reason (keys, rate limits, caching, or none); designed states for **loading**, **nothing found** and **API down** | ☐ "Draw a diagram of one request, from the click to the screen…" | ☐ |
-| B7 | **Playwright test:** two users sign in, each saves something, and neither can see the other's; **break RLS on purpose → watch it fail → fix → watch it pass** (keep the failing output as evidence) | ☐ "Explain why the test failed… in one sentence I could say in class." | ☐ |
+| B7 | **Playwright test:** two users sign in, each saves something, and neither can see the other's; **break RLS on purpose → watch it fail → fix → watch it pass** (keep the failing output as evidence) | ☑ "Explain why the test failed…": *I changed the read policy to `using (true)`, so Supabase handed every signed-in user everyone's saved stations, and user B's screen showed user A's station: 1 where the test expected 0.* | ☑ 2026-10-24: broken in SQL Editor (`e2e/break-rls.sql`) → failed → fixed (`e2e/fix-rls.sql`) → passed; outputs in `docs/evidence/` |
 | B8 | **Review and deploy:** work on a **branch**; run `/security-review` before merging; **read the agent's changes yourself**; deploy on Vercel with env vars set; **a classmate makes an account and uses it** | ☐ "Quiz me on how my app works, one question at a time…" | ☐ |
 
 ## C. Requirements
@@ -40,7 +40,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | C3 | **API:** data from one external API, with designed loading, nothing-found and API-down states | ☐ |
 | C4 | **Persistence:** saved data is still there after signing out and back in, **on another device** | ☑ 2026-10-24 laptop → phone, `docs/evidence/phone-persistence.jpg` |
 | C5 | **Keys:** in environment variables, never in the code or repo, with a deny rule for `.env` files | ☐ |
-| C6 | **Test:** one Playwright test that two users can't see each other's data, watched failing first | ☐ |
+| C6 | **Test:** one Playwright test that two users can't see each other's data, watched failing first | ☑ 2026-10-24, see A7 |
 | C7 | **Review:** `/security-review` on a branch, **and its findings handled** | ☐ |
 | C8 | **Deployed:** live on Vercel, where a classmate can make an account and use it | ☐ |
 | C9 | **UI/UX:** the design process, principles and flows from earlier weeks still applied | ☐ |

@@ -1,0 +1,10 @@
+# Playwright run after e2e/fix-rls.sql restored the policy
+# 2026-10-24 16:59 CDT, against the dev server
+
+[dotenv@17.2.2] injecting env (0) from .env.local,.env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › e2e/isolation.spec.ts:41:5 › two users can't see each other's saved stations (1.8m)
+
+  1 passed (1.9m)

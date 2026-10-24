@@ -34,7 +34,8 @@ async function saveStation(page: Page, search: string, name: string) {
   await add.getByRole("button").filter({ hasText: search }).first().click();
   await add.getByLabel("What do you call it?").fill(name);
   await add.getByRole("button", { name: "Save station" }).click();
-  await expect(page.getByText(name, { exact: true })).toBeVisible();
+  // Saving checks the station against Divvy and writes to Supabase; give it time.
+  await expect(page.getByText(name, { exact: true })).toBeVisible({ timeout: 30_000 });
 }
 
 test("two users can't see each other's saved stations", async ({ browser }) => {

@@ -1,0 +1,49 @@
+# Playwright run with RLS broken on purpose (e2e/break-rls.sql applied in Supabase SQL Editor)
+# 2026-10-24 16:53 CDT, against the dev server
+
+[dotenv@17.2.2] injecting env (0) from .env.local,.env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › e2e/isolation.spec.ts:41:5 › two users can't see each other's saved stations (1.9m)
+
+
+  1) [chromium] › e2e/isolation.spec.ts:41:5 › two users can't see each other's saved stations ─────
+
+    Error: user B can see user A's station
+
+    expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByText('A-only mvmxolkw', { exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - user B can see user A's station getByText('A-only mvmxolkw', { exact: true }) with timeout 5000ms
+      - waiting for getByText('A-only mvmxolkw', { exact: true })
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      58 |   await expect(b.getByText(nickname(B), { exact: true })).toBeVisible();
+      59 |   // …and not the other person's.
+    > 60 |   await expect(b.getByText(nickname(A), { exact: true }), "user B can see user A's station").toHaveCount(0);
+         |                                                                                              ^
+      61 |   await expect(a.getByText(nickname(B), { exact: true }), "user A can see user B's station").toHaveCount(0);
+      62 |
+      63 |   // Tidy up so the next run starts clean.
+        at /home/rajhansini/projects/dbs-a4/e2e/isolation.spec.ts:60:94
+
+    Error Context: test-results/isolation-two-users-can-t-see-each-other-s-saved-stations-chromium/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/isolation-two-users-can-t-see-each-other-s-saved-stations-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/isolation-two-users-can-t-see-each-other-s-saved-stations-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › e2e/isolation.spec.ts:41:5 › two users can't see each other's saved stations ──────
