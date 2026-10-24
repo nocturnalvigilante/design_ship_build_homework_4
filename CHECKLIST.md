@@ -13,7 +13,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | A5 | What you save is still there after signing out and back in | | ☐ |
 | A6 | Keys kept out of the code and the repo, with a deny rule for `.env` files | | ☐ |
 | A7 | One Playwright test, watched failing before it passed | | ☐ |
-| A8 | `/security-review` run on a branch | | ☐ |
+| A8 | `/security-review` run on a branch | 2026-10-24 on `feat/clerk` before merging: 0 findings, report in `docs/security-review.md` | ☑ |
 | A9 | A GitHub repo with commits that show progress (not one-shot) | | ☐ |
 | A10 | Ready to explain the work in class (section F) | | ☐ |
 
@@ -22,11 +22,11 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | # | Step | Ask-your-agent done? | Status |
 |---|---|---|---|
 | B1 | **Tool and API:** extend A3 or start something new; pick one external API (keyless list in the brief, or your own) and make it distinct from classmates' apps | — | ☑ new tool DockCheck, Divvy GBFS; chosen over a gym-crowd idea once UChicago turned out to publish no occupancy feed |
-| B1a | The agent calls the API and shows one **real response**: which fields come back, and what happens when a search finds nothing | ☐ "Explain this response: what each field means, and which ones my tool needs." | ☐ |
+| B1a | The agent calls the API and shows one **real response**: which fields come back, and what happens when a search finds nothing | ☑ "Explain this response: what each field means, and which ones my tool needs." | ☑ 2026-10-24: live call, 2,076 stations; Ellis Ave & 58th St showed 0 bikes, 18 docks; a search for "zzz" and an unknown id both come back empty, not as errors |
 | B2 | **Data plan with the agent:** what gets saved and whose it is; 2–3 tables; **every table holding someone's data has a `user_id` column**; data model written in `AGENTS.md` and read before building | ☐ "Draw a diagram of my tables…" | ☐ |
 | B3 | **Keys:** (deny rule ☑ committed before any key exists) `.claude/settings.json` deny rule `["Read(./.env)", "Read(./.env.*)"]` added **before** the first key; **you** create `.env.local` (the agent can't) | ☐ "Explain why this deny rule protects my keys… publishable vs secret keys…" | ☐ |
-| B4 | **Clerk:** run `npx -y clerk@latest init`; a signed-out visitor can't reach anyone's data, **checked by trying it signed out** | ☐ "Show me how the Clerk CLI works: what clerk init added, file by file." | ☐ |
-| B5 | **Supabase:** create the project; connect its **MCP server scoped to that one project** (write access recommended); Clerk connected via Supabase third-party auth (Authentication → Sign In / Providers → Clerk); tables created **as migrations**, with **RLS on every table** | ☐ "Explain each RLS policy in plain words, then show me a query one would block." | ☐ |
+| B4 | **Clerk:** run `npx -y clerk@latest init`; a signed-out visitor can't reach anyone's data, **checked by trying it signed out** | ☑ "Show me how the Clerk CLI works: what clerk init added, file by file." (middleware, ClerkProvider in layout, /sign-in, /sign-up) | ☑ 2026-10-24: signed-out browser got `GET / 307` → `/sign-in`; after signing in, `GET / 200` (dev server log) |
+| B5 | **Supabase:** create the project; connect its **MCP server scoped to that one project** (write access recommended); Clerk connected via Supabase third-party auth (Authentication → Sign In / Providers → Clerk); tables created **as migrations**, with **RLS on every table** | ☐ "Explain each RLS policy in plain words, then show me a query one would block." | ☑ 2026-10-24: project `dockcheck` (us-east-1); MCP pinned by `project_ref` in `.mcp.json`; Clerk third-party auth enabled; 2 migrations in `supabase/migrations/`; all 3 tables RLS on with 4 policies each, `anon` has no access; security advisor 0 issues |
 | B6 | **Where the API is called:** browser or server, with the reason (keys, rate limits, caching, or none); designed states for **loading**, **nothing found** and **API down** | ☐ "Draw a diagram of one request, from the click to the screen…" | ☐ |
 | B7 | **Playwright test:** two users sign in, each saves something, and neither can see the other's; **break RLS on purpose → watch it fail → fix → watch it pass** (keep the failing output as evidence) | ☐ "Explain why the test failed… in one sentence I could say in class." | ☐ |
 | B8 | **Review and deploy:** work on a **branch**; run `/security-review` before merging; **read the agent's changes yourself**; deploy on Vercel with env vars set; **a classmate makes an account and uses it** | ☐ "Quiz me on how my app works, one question at a time…" | ☐ |
