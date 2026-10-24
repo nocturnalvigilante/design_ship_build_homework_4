@@ -13,7 +13,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | A5 | What you save is still there after signing out and back in | | ☐ |
 | A6 | Keys kept out of the code and the repo, with a deny rule for `.env` files | | ☐ |
 | A7 | One Playwright test, watched failing before it passed | | ☐ |
-| A8 | `/security-review` run on a branch | | ☐ |
+| A8 | `/security-review` run on a branch | 2026-10-24 on `feat/clerk` before merging: 0 findings, report in `docs/security-review.md` | ☑ |
 | A9 | A GitHub repo with commits that show progress (not one-shot) | | ☐ |
 | A10 | Ready to explain the work in class (section F) | | ☐ |
 
