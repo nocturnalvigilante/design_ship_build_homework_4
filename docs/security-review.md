@@ -31,3 +31,12 @@ Run with `/security-review` on 2026-10-24, on branch `feat/clerk` against `origi
 
 - Critical Next.js image-optimizer bug (GHSA-2464-fhr4-w9xw) in 15.5.27: patched to 15.5.28.
 - Supabase security advisor: `rls_auto_enable()` was callable by anyone through the API: revoked in a migration.
+
+---
+
+# Later branches
+
+| Branch | Review | Result |
+|---|---|---|
+| `feat/playwright-test` | `/security-review`, 2026-10-24 | 0 findings. No secrets in code or saved test output; Playwright traces (which can hold cookies) are git-ignored; `break-rls.sql` is outside `supabase/migrations/` so it is never applied automatically, and the live policy was confirmed restored. |
+| `feat/polish` | read by the agent, 2026-10-24 | 0 findings. Only app-code change: `/?demo=api-down` makes the page skip the Divvy call and show the "Divvy isn't responding" state. It only removes data from that one response, never touches Supabase queries or RLS, and is behind `auth.protect()` like the rest of the page. The rest is documentation. |
