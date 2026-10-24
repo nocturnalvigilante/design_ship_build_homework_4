@@ -29,9 +29,11 @@ const CHECK_EVERY_MS = 5 * 60 * 1000;
 const NEAR_MINUTES = 20;
 const HISTORY_DAYS = 60;
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<{ demo?: string }> }) {
   // Signed-out visitors are sent to /sign-in before anything renders.
   await auth.protect();
+  // /?demo=api-down shows the "Divvy is down" state on demand, for demos and the test.
+  const simulateDown = (await searchParams).demo === "api-down";
 
   const supabase = createSupabaseClient();
   const [{ data: saved, error }, stationsFeed] = await Promise.all([
@@ -49,7 +51,7 @@ export default async function Home() {
 
   const since = new Date(Date.now() - HISTORY_DAYS * 24 * 60 * 60 * 1000).toISOString();
   const [statusFeed, { data: checkRows }] = await Promise.all([
-    getStatuses(ids),
+    simulateDown ? Promise.resolve({ ok: false } as const) : getStatuses(ids),
     ids.length
       ? supabase
           .from("checks")
