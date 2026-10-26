@@ -1,0 +1,14 @@
+RLS check on the live Supabase project (dockcheck), 2026-10-26, via the Supabase MCP.
+
+table           rls_on  policies  anon can select?
+checks          true    4         no
+departures      true    4         no
+saved_stations  true    4         no
+
+Every policy is for role `authenticated` and matches (select auth.jwt()->>'sub') = user_id:
+  SELECT / DELETE   using (sub = user_id)
+  INSERT            with check (sub = user_id)
+  UPDATE            using and with check (sub = user_id)
+departures INSERT/UPDATE also require saved_station_id to be one of your own saved_stations.
+
+Security advisor: 0 lints.
