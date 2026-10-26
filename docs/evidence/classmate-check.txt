@@ -1,0 +1,8 @@
+Classmate used the live app, 2026-10-26, at https://dockcheck-phi.vercel.app
+
+Their phone showed "Quad", University Ave & 57th St, 10 bikes left of 48, live as of 6:40 PM.
+
+Supabase check (counts only, no one's data read), via the Supabase MCP:
+  accounts with saved stations     2
+  account with "Quad"              1, saved 2026-10-26 23:42 UTC (6:42 PM Chicago)
+  "Quad" in a different account from "Lab"   true
