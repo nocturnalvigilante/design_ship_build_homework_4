@@ -6,7 +6,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 
 | # | Requirement | Evidence | Status |
 |---|---|---|---|
-| A1 | A live Vercel URL where a classmate can make an account and use the tool | 2026-10-26: a classmate signed up on their phone and saved "Quad" (University Ave & 57th St); Supabase shows it in a second account (`docs/evidence/classmate-check.txt`) | ☑ |
+| A1 | A live Vercel URL where a classmate can make an account and use the tool | 2026-10-26: a classmate signed up on their phone and saved "Quad" (University Ave & 57th St); Supabase shows it in a second account (`docs/evidence/classmate.jpg`, `docs/evidence/classmate-check.txt`) | ☑ |
 | A2 | Sign-in with Clerk, and nothing visible when signed out | signed-out visit redirects to /sign-in (local + live); sign-out on phone lands on sign-in with no data (`docs/evidence/phone-signed-out.jpg`) | ☑ |
 | A3 | Data in Supabase, with row-level security on every table | 2026-10-26: all 3 tables RLS on, 4 owner-only policies each, `anon` has no access, security advisor 0 lints (`docs/evidence/rls-check.txt`) | ☑ |
 | A4 | Data from an external API, with loading, empty and unavailable states | `src/lib/gbfs.ts` + designed states; "nothing found" and "API down" checked by `e2e/states.spec.ts` (`docs/evidence/test-states.txt`) | ☑ |
