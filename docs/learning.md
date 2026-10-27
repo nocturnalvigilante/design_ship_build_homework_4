@@ -242,3 +242,26 @@ Sources: [Supabase pricing guide (jetadmin)](https://www.jetadmin.io/blog/supaba
   - Clerk had deprecated `createRouteMatcher`, so protection moved into each page.
   - The first "failing" test run failed for the wrong reason (a slow save, not RLS), so it wasn't counted as evidence.
   - I pasted the Clerk secret key into the chat by mistake, so it has to be rotated in Clerk and replaced in Vercel and `.env.local`.
+
+---
+
+## 10. Quiz: five questions I could be asked in class
+
+*"Quiz me on how my app works, one question at a time, and tell me what I got wrong."*
+
+These are the agent's questions with its model answers, kept short enough to say out loud. The fuller versions are in §6, §7 and §9.
+
+**Q1. Someone saves a station. What happens, from the tap to the screen?**
+> The browser sends the Save to a Server Action on my Next.js server on Vercel. It calls `auth.protect()`, so Clerk confirms who I am from my session cookie, and checks the station id against the Divvy list. Then it inserts the row into Supabase with my Clerk token attached. Supabase verifies the token, sets `user_id` to my Clerk id, and RLS lets the insert through only because it's mine. The page re-renders: it reads my stations back (RLS returns only mine), fetches live counts from Divvy (cached 60 s), and shows "Lab: 6 bikes left".
+
+**Q2. Where does the app know who you are, and where does it decide what you may see?**
+> Who I am: Clerk. Its middleware reads the session cookie on every request, and every page, route and action starts with `auth.protect()`. What I may see: Supabase. Every query carries my Clerk token, and row-level security only returns rows whose `user_id` matches it. So even a bug in my server code can't show someone else's stations.
+
+**Q3. Where do you call the Divvy API, and why there?**
+> On my server, in `src/lib/gbfs.ts`, never from the phone. Not because of keys, since Divvy needs none. Because of size and caching: the feeds cover 2,000+ stations, so one cached fetch every 60 s serves every user, instead of each phone downloading the whole city. If Divvy fails, times out or goes stale, the card shows "Divvy isn't responding" with my last known counts.
+
+**Q4. What did the failing test look like, and what did you change?**
+> The Playwright test signs in two users. Each saves a station, and it checks that user B can't see user A's. I broke RLS on purpose by changing the read policy to `using (true)`. The test failed with "user B can see user A's station: expected 0, received 1". I put the owner-only policy back and it passed.
+
+**Q5. What did you stop the agent from doing, and what did you catch reading its changes?**
+> I kept it away from my keys: a deny rule on `.env` files, and I wrote `.env.local` and ran `clerk init` myself. I didn't let it run test queries against my database or fix RLS for me; I broke and fixed RLS myself in the SQL Editor. Reading its changes I caught a critical Next.js security bug from `npm audit` (patched), a database function anyone could call (locked down in a migration), a first "failing" test that failed for the wrong reason, and a branch merged without `/security-review`, which I then ran late.
