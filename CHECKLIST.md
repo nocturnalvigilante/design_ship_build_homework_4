@@ -41,7 +41,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | C4 | **Persistence:** saved data is still there after signing out and back in, **on another device** | ☑ 2026-10-24 laptop → phone, `docs/evidence/phone-persistence.jpg` |
 | C5 | **Keys:** in environment variables, never in the code or repo, with a deny rule for `.env` files | ☑ see A6 |
 | C6 | **Test:** one Playwright test that two users can't see each other's data, watched failing first | ☑ 2026-10-24, see A7 |
-| C7 | **Review:** `/security-review` on a branch, **and its findings handled** | ☑ two reviews (`feat/clerk`, `feat/playwright-test`), 0 findings each; earlier advisor + npm audit findings fixed (`docs/security-review.md`) |
+| C7 | **Review:** `/security-review` on a branch, **and its findings handled** | ☑ `/security-review` on all three branches, 0 findings each (`feat/clerk`, `feat/playwright-test` before merging; `feat/polish` late, 2026-10-27, after merging); earlier advisor + npm audit findings fixed (`docs/security-review.md`) |
 | C8 | **Deployed:** live on Vercel, where a classmate can make an account and use it | ☑ classmate signed up and saved a station, 2026-10-26 (`docs/evidence/classmate-check.txt`) |
 | C9 | **UI/UX:** the design process, principles and flows from earlier weeks still applied | ☑ design process and principles written up in README "Design process" |
 
