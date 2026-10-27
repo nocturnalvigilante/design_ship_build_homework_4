@@ -62,7 +62,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 | # | Item | Status |
 |---|---|---|
 | E1 | Stay on the free tier for Vercel, Supabase and Clerk | ☑ Vercel Hobby, Supabase Free, Clerk Hobby (dev instance) |
-| E2 | Set usage limits and spending alerts wherever offered | ☐ check each Usage page; see docs/learning.md §8 |
+| E2 | Set usage limits and spending alerts wherever offered | ☑ 2026-10-27: none of the free plans offers a spend cap (Pro-only on Vercel and Supabase), and no card is on file. Checked: Vercel Hobby Usage page, 135.76 MB of 100 GB transfer; Supabase database 11 MB of 500 MB (2.1%). Clerk Hobby, dev instance. See docs/learning.md §8 |
 | E3 | No payment method unless required; if one is required, set a spending cap first | ☑ no payment method added anywhere |
 | E4 | Supabase pauses free projects after a week of no use, so open the app regularly until grades are back | ☐ ongoing: open the app at least weekly until grades are back |
 | E5 | Ask your agent: "Walk me through the free tier limits for each service… and how to set usage limits and spending alerts." | ☑ docs/learning.md §8 |
