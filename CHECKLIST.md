@@ -81,7 +81,7 @@ Every item is taken from the brief. An item is ticked only once it has been **ve
 
 | # | Item | Status |
 |---|---|---|
-| G1 | Vercel URL: https://dockcheck-phi.vercel.app | ☐ |
+| G1 | Vercel URL: https://dockcheck-phi.vercel.app | ☑ turned in on Google Classroom with the GitHub URL, 2026-10-26 |
 | G2 | GitHub URL (README + commit history) | ☑ README rewritten; 21+ commits |
 
 ## Easy-to-miss items (each one costs marks if skipped)
